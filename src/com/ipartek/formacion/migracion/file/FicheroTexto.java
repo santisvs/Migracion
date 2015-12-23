@@ -31,15 +31,14 @@ public class FicheroTexto {
             fr = new FileReader(fichero);
             br = new BufferedReader(fr);
             
-            Persona per = new Persona();
+            Persona per = null;
             String linea = null;
-            int contadorLineas = 0;
             
             while((linea=br.readLine())!=null){
+            	per = new Persona();
             	leerCamposPersona(per,linea);
             	if(per.getId()==0){
             		listaPersonas.add(per);
-            		contadorLineas++;
             	}
             	else{
             		resul++;
@@ -47,10 +46,10 @@ public class FicheroTexto {
             }
              
         } catch (FileNotFoundException e) {
-        	e.getMessage();
+        	e.printStackTrace();
             
         } catch (Exception e) {
-        	e.getMessage();
+        	e.printStackTrace();
             
         } finally {
         	try {
@@ -74,13 +73,19 @@ public class FicheroTexto {
 		if (campos.length != 7){
 			per.setId(-1);
 		}else{
+			//TODO utilizar constructor Persona con campo y comprobar campos en clase persona
 			per.setId(0);
+			//TODO COmprobar patrones de nombre, apellido1 y apellido2
 			per.setNombre(campos[0]);
 			per.setApellido1(campos[1]);
 			per.setApellido2(campos[2]);
+			//TODO COmprobar patrones de edad
 			per.setEdad(Integer.parseInt(campos[3]));
+			//TODO COmprobar patrón de email
 			per.setEmail(campos[4]);
+			//TODO Comprobar patrón de Dni
 			per.setDni(campos[5]);
+			//TODO Comprobar patrón de Rol
 			per.setRol(campos[6]);
 		}
 	}

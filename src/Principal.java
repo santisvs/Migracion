@@ -12,24 +12,35 @@ import com.ipartek.formacion.migracion.modelo.PersonaDAO;
 import com.ipartek.formacion.migracion.pojo.Persona;
 
 /**
- * El programa principal es el encargado de ejecutar pasos a paso el hilo de ejcución:
+ * Objetivo: Hay que incluir todos los usuarios de un fichero de texto en una BBDD<br>
  * 
- * 1/ 	Lectura de fichero de entrada
- * 			Incluir cada entrada en el ArrayList y devolver el número de errores de lectura
- * 			@param listaPersonas = ArrayList<Persona> => Lista de personas leidas
- * 			@param errores = int => Nº errores de lectura de personas
- * 2/	Rellenar fichero Resumen
- * 			- inserciones: listaPersonas.tamaño
-			- errores: int
- * 3/ 	PersonaDAO.insertar
- * 		 	Conectar con BBDD
- * 			Recorrer ArrayList
- * 			Insertar cada elemento en BBDD
- * 4/ 	Si todo ha ido bien 
- * 			Commit
- * 		sino
- * 			Rollback
- * 
+ * CONSTANTES:<br>
+ * <ul>
+ * <li>{@code PATH_FILE_TEST_FOLDER} Ruta de la carpeta donde se guardan los ficheros</li>
+ * <li>{@code filePathPruebaTxt} Nombre del fichero de lectura</li>
+ * <li>{@code filePathResumenTxt} Nombre del fichero resultados</li>
+ * </ul>
+ * <br>
+ *  
+ * El programa principal es el encargado de ejecutar paso a paso el programa:<br>
+ * <ul>
+ * <ol>Lectura de fichero de entrada: Incluir cada entrada en el ArrayList y devolver el número de errores de lectura
+ * 			<li>@param listaPersonas = ArrayList<Persona> => Lista de personas leidas</li>
+ * 			<li>@param errores = int => Nº errores de lectura de personas</li>
+ * </ol>
+ * <ol>Rellenar fichero Resumen
+ * 			<li>inserciones: listaPersonas.tamaño</li>
+ *			<li>errores: int</li>
+ * </ol>
+ * <ol>PersonaDAO.insertar
+ * 		 	<li>Conectar con BBDD
+ * 			<li>Recorrer ArrayList
+ * 			<li>Insertar cada elemento en BBDD</li><br>
+ *  		Si todo ha ido bien <br>
+ * 				Commit<br>
+ * 			sino<br>
+ * 				Rollback<br>
+ * </ol>
  * 
  * @author SantiSVS
  *
@@ -37,14 +48,15 @@ import com.ipartek.formacion.migracion.pojo.Persona;
 public class Principal implements Serializable{
 
 	static final String PATH_FILE_TEST_FOLDER = "Ficheros";
-	static String filePathPruebaTxt = "/prueba.txt";
+	static String filePathPruebaTxt = "/personas.txt";
 	static String filePathResumenTxt = "/resumen.txt";
 	
 	
 	public static void main(String[] args) throws SQLException {
 		
 		/*
-		 * Lectura Fichero de entrada
+		 * 1/Lectura Fichero de entrada
+		 * 
 		 */
 		//Inicialización de parametros
 		FicheroTexto fichero = new FicheroTexto(PATH_FILE_TEST_FOLDER + filePathPruebaTxt);
@@ -53,6 +65,7 @@ public class Principal implements Serializable{
 		
 		errores = fichero.leer(listaPersonas);
 		
+		
 		/*
 		 * Rellenar fichero Resumen
 		 */
@@ -60,9 +73,6 @@ public class Principal implements Serializable{
 		
 		resumen.escribir(listaPersonas.size(), errores);
 		
-		for (int i = 0 ; i<listaPersonas.size(); i++){
-			System.out.println(""+listaPersonas.get(i).toString());
-		}
 		
 		/*
 		 * PersonaDAO.insertar
