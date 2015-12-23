@@ -1,0 +1,2 @@
+inserciones: 5
+errores: 0
