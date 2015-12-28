@@ -152,12 +152,10 @@ public class FicheroTexto {
 		}else{
 			per.setId(0);
 			//TODO COmprobar patrones de nombre, apellido1 y apellido2
-			if (per.isNombre(campos[0]) && per.isNombre(campos[1]) && 
-				per.isNombre(campos[2]) && per.isEmail(campos[4])){
-				per.setNombre(campos[0]);
-				per.setApellido1(campos[1]);
-				per.setApellido2(campos[2]);
-			}
+			per.setNombre(campos[0]);
+			per.setApellido1(campos[1]);
+			per.setApellido2(campos[2]);
+		
 			//TODO COmprobar patrones de edad
 			per.setEdad(Integer.parseInt(campos[3]));
 			//TODO COmprobar patrón de email
