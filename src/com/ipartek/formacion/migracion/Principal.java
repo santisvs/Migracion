@@ -1,4 +1,4 @@
-
+package com.ipartek.formacion.migracion;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -47,15 +47,17 @@ import com.ipartek.formacion.migracion.pojo.Persona;
  */
 public class Principal implements Serializable{
 
-	static final String PATH_FILE_TEST_FOLDER = "Ficheros";
-	static String filePathPruebaTxt = "/personas.txt";
-	static String filePathResumenTxt = "/resumen.txt";
+	static final String PATH_FILE_TEST_FOLDER = "data";
+	static final String filePathPruebaTxt = "/prueba.txt";
+	static final String filePathResumenTxt = "/resumen.txt";
 	
 	
 	public static void main(String[] args) throws SQLException {
 		
+		long tInicio = System.currentTimeMillis();
+		System.out.println("Comenzando Migración...");
 		/*
-		 * 1/Lectura Fichero de entrada
+		 * Lectura Fichero de entrada
 		 * 
 		 */
 		//Inicialización de parametros
@@ -85,44 +87,9 @@ public class Principal implements Serializable{
 			System.out.println("Fallo");
 		}
 		
+		long tFin = System.currentTimeMillis();
+		System.out.println("Proceso terminado: "+((tFin - tInicio)/1000)+" segundos");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*FicheroTexto fichero = new FicheroTexto(PATH_FILE_TEST_FOLDER + filePathPruebaTxt);
-		FileWriter fw = null;
-        PrintWriter pw = null;
-        
-        try {
-            fw = new FileWriter(PATH_FILE_TEST_FOLDER + filePathResumenTxt);
-            pw = new PrintWriter(fw, true);
-				
-            fichero.leer(pw);
-		
-        } catch (Exception e) {
-        	
-            e.getMessage();
-        
-        } finally {
-           try {
-        	   if ( null!= pw ){
-        		   pw.close();
-        	   }
-        	   if ( null != fw ){
-        		   fw.close();
-        	   }
-           } catch (Exception e2){
-              e2.printStackTrace();
-           }
-        }*/
 	}
 
 }

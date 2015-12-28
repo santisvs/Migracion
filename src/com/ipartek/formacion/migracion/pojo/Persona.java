@@ -1,6 +1,8 @@
 package com.ipartek.formacion.migracion.pojo;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Persona {
 
@@ -126,7 +128,25 @@ public class Persona {
 	}
 
 
+	public boolean isNombre(String cadena){
+		boolean resul = false;
+		Pattern pat = Pattern.compile("/^[A-Za-zαινσϊρ]{2,}$/");
+		Matcher mat = pat.matcher(cadena);
+		if (mat.matches()) {
+			resul = true;
+		} 
+		return resul;
+	}
 	
+	public boolean isEmail(String cadena){
+		boolean resul = false;
+		Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		Matcher mat = pat.matcher(cadena);
+		if (mat.matches()) {
+			resul = true;
+		} 
+		return resul;
+	}
 
 }
 

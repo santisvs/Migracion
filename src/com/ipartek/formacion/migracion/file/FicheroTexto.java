@@ -1,7 +1,5 @@
 package com.ipartek.formacion.migracion.file;
 
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,16 +10,56 @@ import java.util.ArrayList;
 
 import com.ipartek.formacion.migracion.pojo.Persona;
 
+/**
+ * Clase {@code FicheroTexto} realiza las acciones básicas sobre el fichero asignado en el atributo de {@code fichero}:<br>
+ * <br>
+ * <b>Métodos</b>
+ * <ul>
+ * 		<li><b>{@code leer}:</b> Lee todo el fichero de texto. Cada {@code linea} se incluye en un objeto {@code Persona} y éste a su vez en un array {@code listaPersonas}<br>
+ * 		<b>return Errores de personas leidas</b></li><br>
+ * 		<li><b>{@code escribir}:</b></li> Escribe en el fichero de texto los parametros de entrada del método {@code inserciones} y {@code errores}
+ * </ul>
+ * 
+ * 
+ * <b>Estructura interna de la clase</b>
+ * <ol>
+ * 		<li>Atributos</li>
+ * 		<li>Constructor</li>
+ * 		<li>Métodos Públicos</li>
+ * 			<ul>
+ * 				<li>{@code leer}</li>
+ * 				<li>{@code escribir}</li>
+ * 			</ul>
+ * 		<li>Métodos Privados</li>
+ * 			<ul>
+ * 				<li>{@code leerCamposPersona}</li>
+ * 			</ul>
+ * </ol>
+ * 
+ * 
+ * @author SantiSVS
+ *
+ */
 public class FicheroTexto {
 	
+	/*
+	 * Atributos
+	 *******************************************/
 	private File fichero;
 	
+	
+	/*
+	 * Constructor
+	 *******************************************/
 	public FicheroTexto(String ruta) {
 		super();
 		this.fichero = new File(ruta);
 	}
 
 
+	/*
+	 * Métodos públicos
+	 *******************************************/
 	public int leer(ArrayList<Persona> listaPersonas){
 		int resul = 0;
 		FileReader fr = null;
@@ -46,6 +84,7 @@ public class FicheroTexto {
             }
              
         } catch (FileNotFoundException e) {
+        	System.out.println("Fichero no encontrado");
         	e.printStackTrace();
             
         } catch (Exception e) {
@@ -66,31 +105,9 @@ public class FicheroTexto {
         
         return resul;
 	}
-
-
-	private void leerCamposPersona(Persona per, String linea) {
-		String[] campos = linea.split(",");
-		if (campos.length != 7){
-			per.setId(-1);
-		}else{
-			//TODO utilizar constructor Persona con campo y comprobar campos en clase persona
-			per.setId(0);
-			//TODO COmprobar patrones de nombre, apellido1 y apellido2
-			per.setNombre(campos[0]);
-			per.setApellido1(campos[1]);
-			per.setApellido2(campos[2]);
-			//TODO COmprobar patrones de edad
-			per.setEdad(Integer.parseInt(campos[3]));
-			//TODO COmprobar patrón de email
-			per.setEmail(campos[4]);
-			//TODO Comprobar patrón de Dni
-			per.setDni(campos[5]);
-			//TODO Comprobar patrón de Rol
-			per.setRol(campos[6]);
-		}
-	}
-
-
+	
+	
+	
 	public void escribir(int size, int errores) {
 		FileWriter fw = null;
         PrintWriter pw = null;
@@ -123,4 +140,33 @@ public class FicheroTexto {
 		
         }
 	}
+
+
+	/*
+	 * Métodos Privados
+	 *******************************************/
+	private void leerCamposPersona(Persona per, String linea) {
+		String[] campos = linea.split(",");
+		if (campos.length != 7){
+			per.setId(-1);
+		}else{
+			per.setId(0);
+			//TODO COmprobar patrones de nombre, apellido1 y apellido2
+			if (per.isNombre(campos[0]) && per.isNombre(campos[1]) && 
+				per.isNombre(campos[2]) && per.isEmail(campos[4])){
+				per.setNombre(campos[0]);
+				per.setApellido1(campos[1]);
+				per.setApellido2(campos[2]);
+			}
+			//TODO COmprobar patrones de edad
+			per.setEdad(Integer.parseInt(campos[3]));
+			//TODO COmprobar patrón de email
+			per.setEmail(campos[4]);
+			//TODO Comprobar patrón de Dni
+			per.setDni(campos[5]);
+			//TODO Comprobar patrón de Rol
+			per.setRol(campos[6]);
+		}
+	}
+
 }
