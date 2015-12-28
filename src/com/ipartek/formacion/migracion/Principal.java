@@ -54,8 +54,9 @@ public class Principal implements Serializable{
 	
 	public static void main(String[] args) throws SQLException {
 		
-		long tInicio = System.currentTimeMillis();
 		System.out.println("Comenzando Migración...");
+		long tInicio = System.currentTimeMillis();
+		System.out.println("Inicio:" + tInicio + " milisegundos");
 		/*
 		 * Lectura Fichero de entrada
 		 * 
@@ -88,7 +89,8 @@ public class Principal implements Serializable{
 		}
 		
 		long tFin = System.currentTimeMillis();
-		System.out.println("Proceso terminado: "+((tFin - tInicio)/1000)+" segundos");
+		System.out.println("Fin:" + tFin + " milisegundos");
+		System.out.println("Proceso terminado: "+ (tFin - tInicio) +" milisegundos");
 		
 	}
 

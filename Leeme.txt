@@ -1,0 +1,49 @@
+//////////////////////////////////////////////////////
+//////////////// PROCESO DE MIGRACIÓN ////////////////
+//////////////////////////////////////////////////////
+
+Objetivo de la migraciópn: Leer un fichero de texto 
+donde se incluyen los datos de personas para migrarlas 
+a una tabla personas de un base de datos determinada.  
+
+- 	Cada linea supone un registro persona de la base 
+	de datos.
+	
+-	Cada linea esta compuesta de 7 campos separados 
+	por ","
+	
+-	No incluir personas que no contengan 7 campos
+
+- 	No inlcuir personas que no cumplan las restricciones
+	lógicas en cada campo
+	
+
+Autor: SantiSVS (Santiago Vallejo)
+
+Versión de entrega (Tag): SantiSVS_Migracion_v1.0
+
+Objetivo alcanzado: 
+
+- 	Leer fichero de texto
+-	Incluir registros que contengan 7 campos en base de datos 
+
+Base de Datos:
+
+	jdbc:mysql://localhost/iparsex;
+	
+Librerias dependientes:
+
+	lib/mysql-connector-java-5.1.38-bin.jar	
+
+Fichero de entrada (todos los registros)
+ 
+	data/personas.txt
+
+Fichero de salida (nº de inserciones y nº de errores)
+ 
+	data/resumen.txt
+
+Fichero de pruebas (13 personas)
+
+	data/prueba.txt
+	
