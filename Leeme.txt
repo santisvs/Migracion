@@ -22,6 +22,14 @@ Autor: SantiSVS (Santiago Vallejo)
 
 Versión de entrega (Tag): SantiSVS_Migracion_v1.0
 
+Ejecución:
+
+Para ejecutar sobre el fichero que queramos, debemos modificar
+la linea (51 aprox) de la clase Principal:
+
+static final String filePathPruebaTxt = "/personas.txt";
+static final String filePathPruebaTxt = "/pruebas.txt";
+
 Objetivo alcanzado: 
 
 - 	Leer fichero de texto

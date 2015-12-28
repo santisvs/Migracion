@@ -48,7 +48,7 @@ import com.ipartek.formacion.migracion.pojo.Persona;
 public class Principal implements Serializable{
 
 	static final String PATH_FILE_TEST_FOLDER = "data";
-	static final String filePathPruebaTxt = "/prueba.txt";
+	static final String filePathPruebaTxt = "/personas.txt";
 	static final String filePathResumenTxt = "/resumen.txt";
 	
 	

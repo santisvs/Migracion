@@ -1,0 +1,2 @@
+inserciones: 9013
+errores: 991

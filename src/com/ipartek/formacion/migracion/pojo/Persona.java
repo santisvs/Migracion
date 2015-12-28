@@ -130,7 +130,7 @@ public class Persona {
 
 	public boolean isNombre(String cadena){
 		boolean resul = false;
-		Pattern pat = Pattern.compile("/^[A-Za-zαινσϊρ]{2,}$/");
+		Pattern pat = Pattern.compile("([,])([ ])(\\p{L}+)(([ ])(\\p{L}+))?");
 		Matcher mat = pat.matcher(cadena);
 		if (mat.matches()) {
 			resul = true;
@@ -147,6 +147,17 @@ public class Persona {
 		} 
 		return resul;
 	}
+	
+	public boolean isDni(String cadena){
+		boolean resul = false;
+		Pattern pat = Pattern.compile("(([X-Z]{1})([-]?)(\\d{7})([-]?)([A-Z]{1}))|((\\d{8})([-]?)([A-Z]{1}))");
+		Matcher mat = pat.matcher(cadena);
+		if (mat.matches()) {
+			resul = true;
+		} 
+		return resul;
+	}
+	
 
 }
 

@@ -147,7 +147,7 @@ public class FicheroTexto {
 	 *******************************************/
 	private void leerCamposPersona(Persona per, String linea) {
 		String[] campos = linea.split(",");
-		if (campos.length != 7){
+		if ((campos.length != 7) || !per.isEmail(campos[4]) || !per.isDni(campos[5])){
 			per.setId(-1);
 		}else{
 			per.setId(0);
